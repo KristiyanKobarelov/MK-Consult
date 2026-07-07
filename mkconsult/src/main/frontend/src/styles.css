@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #182116;
+  background: #182116;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.shadow-wall {
+  background:
+    linear-gradient(128deg, transparent 0 37%, rgba(24, 33, 22, 0.22) 38%, rgba(24, 33, 22, 0.1) 49%, transparent 50%),
+    linear-gradient(104deg, transparent 0 61%, rgba(24, 33, 22, 0.18) 62%, rgba(24, 33, 22, 0.07) 76%, transparent 77%),
+    radial-gradient(circle at 24% 15%, rgba(255, 255, 255, 0.7), transparent 22%),
+    #efe7dc;
+}
+
+.leaf-shadow {
+  background:
+    linear-gradient(72deg, transparent 0 48%, rgba(24, 33, 22, 0.2) 49%, transparent 50%),
+    linear-gradient(78deg, transparent 0 55%, rgba(24, 33, 22, 0.18) 56%, transparent 57%),
+    linear-gradient(84deg, transparent 0 61%, rgba(24, 33, 22, 0.12) 62%, transparent 63%);
+  filter: blur(0.5px);
+}
+
+.dark-band {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(236, 94, 42, 0.1), transparent 24%),
+    linear-gradient(120deg, #1a2318, #273423 52%, #182116);
+}

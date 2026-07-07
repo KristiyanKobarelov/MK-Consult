@@ -5,9 +5,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: "#182116",
-        moss: "#243023",
-        olive: "#35432f",
+        ink: "#25221d",
+        moss: "#8f806f",
+        olive: "#6e6254",
         cream: "#f8f3eb",
         paper: "#fcf8f2",
         line: "#ded3c5",
@@ -19,7 +19,7 @@ export default {
         sans: ["Inter", "Arial", "sans-serif"],
       },
       boxShadow: {
-        panel: "0 18px 55px rgba(24, 33, 22, 0.12)",
+        panel: "0 18px 55px rgba(37, 34, 29, 0.1)",
       },
     },
   },

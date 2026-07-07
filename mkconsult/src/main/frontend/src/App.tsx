@@ -641,27 +641,20 @@ function HomePage({ copy, onNavigate }: { copy: Copy; onNavigate: (page: Page) =
       </section>
       <MissionBand copy={copy} />
       <ServiceStrip copy={copy} onNavigate={onNavigate} />
-      <FocusStats copy={copy} />
     </main>
   );
 }
 
 function MissionBand({ copy }: { copy: Copy }) {
   return (
-    <section className="dark-band px-7 py-16 text-white sm:px-12 lg:px-16">
-      <div className="grid gap-12 lg:grid-cols-[0.82fr_1fr] lg:items-center">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-tan">{copy.home.missionTitle}</p>
-          <h2 className="mt-6 font-serif text-4xl font-semibold sm:text-5xl">{copy.home.missionIntro}</h2>
-        </div>
-        <div className="grid gap-5">
-          {copy.home.mission.map((item) => (
-            <div key={item} className="flex gap-5">
-              <CheckCircle2 className="mt-0.5 h-7 w-7 shrink-0 text-tan" strokeWidth={1.4} />
-              <p className="text-sm leading-7 text-white/82">{item}</p>
-            </div>
-          ))}
-        </div>
+    <section className="border-y border-line bg-cream px-7 py-16 text-ink sm:px-12 lg:px-16">
+      <div className="mx-auto grid max-w-5xl gap-8">
+        {copy.home.mission.map((item) => (
+          <div key={item} className="flex items-start gap-6">
+            <CheckCircle2 className="mt-1 h-11 w-11 shrink-0 text-copper" strokeWidth={1.5} />
+            <p className="text-lg font-semibold leading-8 text-ink/82 sm:text-xl">{item}</p>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -669,7 +662,7 @@ function MissionBand({ copy }: { copy: Copy }) {
 
 function ServiceStrip({ copy, onNavigate }: { copy: Copy; onNavigate: (page: Page) => void }) {
   return (
-    <section className="border-y border-line bg-cream px-7 py-16 sm:px-12 lg:px-16">
+    <section className="border-y border-line bg-white px-7 py-16 sm:px-12 lg:px-16">
       <div className="mb-12 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-copper">{copy.services.title}</p>
         <div className="mx-auto mt-5 h-px w-10 bg-copper" />
@@ -695,19 +688,6 @@ function ServiceStrip({ copy, onNavigate }: { copy: Copy; onNavigate: (page: Pag
           );
         })}
       </div>
-    </section>
-  );
-}
-
-function FocusStats({ copy }: { copy: Copy }) {
-  return (
-    <section className="grid border-t border-line bg-paper px-7 py-9 text-center sm:grid-cols-2 lg:grid-cols-4 lg:px-16">
-      {copy.home.focus.map((item, index) => (
-        <div key={item.value} className={`py-5 ${index < copy.home.focus.length - 1 ? "lg:border-r lg:border-line" : ""}`}>
-          <div className="font-serif text-4xl font-semibold text-copper sm:text-5xl">{item.value}</div>
-          <div className="mt-3 text-sm font-semibold uppercase tracking-[0.04em]">{item.label}</div>
-        </div>
-      ))}
     </section>
   );
 }
@@ -764,7 +744,6 @@ function ServicesPage({ copy, onNavigate }: { copy: Copy; onNavigate: (page: Pag
           );
         })}
       </div>
-      <Cta copy={copy} onNavigate={onNavigate} />
     </PageShell>
   );
 }
@@ -796,7 +775,6 @@ function ExperiencePage({ copy, onNavigate }: { copy: Copy; onNavigate: (page: P
           );
         })}
       </div>
-      <Cta copy={copy} onNavigate={onNavigate} />
     </PageShell>
   );
 }
@@ -813,7 +791,6 @@ function TeamPage({ copy, onNavigate }: { copy: Copy; onNavigate: (page: Page) =
           </article>
         ))}
       </div>
-      <Cta copy={copy} onNavigate={onNavigate} />
     </PageShell>
   );
 }
@@ -854,26 +831,14 @@ function ContactPage({ copy }: { copy: Copy }) {
   );
 }
 
-function Cta({ copy, onNavigate }: { copy: Copy; onNavigate: (page: Page) => void }) {
-  return (
-    <section className="dark-band mt-12 flex flex-col gap-5 px-7 py-7 text-white sm:flex-row sm:items-center sm:justify-between">
-      <div>
-        <h2 className="font-bold">{copy.home.eyebrow}</h2>
-        <p className="mt-2 text-sm text-white/75">{copy.home.lead}</p>
-      </div>
-      <Button onClick={() => onNavigate("contact")}>{copy.ui.contactButton}</Button>
-    </section>
-  );
-}
-
 function Footer({ copy, onNavigate }: { copy: Copy; onNavigate: (page: Page) => void }) {
   return (
-    <footer className="dark-band px-7 py-14 text-white sm:px-12 lg:px-16">
+    <footer className="border-t border-line bg-cream px-7 py-14 text-ink sm:px-12 lg:px-16">
       <div className="grid gap-10 lg:grid-cols-[1.25fr_0.8fr_1fr_1.15fr]">
         <div>
-          <Logo inverse />
-          <p className="mt-6 max-w-xs text-sm leading-7 text-white/75">{copy.home.lead}</p>
-          <a className="mt-5 inline-block text-xs text-tan underline-offset-4 hover:underline" href={sourceUrl} target="_blank" rel="noreferrer">
+          <Logo />
+          <p className="mt-6 max-w-xs text-sm leading-7 text-ink/70">{copy.home.lead}</p>
+          <a className="mt-5 inline-block text-xs text-copper underline-offset-4 hover:underline" href={sourceUrl} target="_blank" rel="noreferrer">
             {copy.ui.sourceLabel}
           </a>
         </div>
@@ -886,14 +851,14 @@ function Footer({ copy, onNavigate }: { copy: Copy; onNavigate: (page: Page) => 
           items={copy.services.groups.map((item) => ({ label: item.title, onClick: () => onNavigate("services") }))}
         />
         <div>
-          <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-tan">{copy.ui.footerContact}</h2>
-          <div className="mt-5 space-y-4 text-sm leading-6 text-white/75">
+          <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-copper">{copy.ui.footerContact}</h2>
+          <div className="mt-5 space-y-4 text-sm leading-6 text-ink/70">
             <p>Sofia, 1000</p>
             <p>Finance@emkaconsult.bg</p>
           </div>
         </div>
       </div>
-      <div className="mt-12 flex flex-col gap-4 border-t border-white/15 pt-6 text-sm text-white/65 sm:flex-row sm:justify-between">
+      <div className="mt-12 flex flex-col gap-4 border-t border-line pt-6 text-sm text-ink/60 sm:flex-row sm:justify-between">
         <span>{copy.ui.rights}</span>
         <span>{copy.ui.builtBy}</span>
       </div>
@@ -904,10 +869,10 @@ function Footer({ copy, onNavigate }: { copy: Copy; onNavigate: (page: Page) => 
 function FooterColumn({ title, items }: { title: string; items: Array<{ label: string; onClick: () => void }> }) {
   return (
     <div>
-      <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-tan">{title}</h2>
-      <div className="mt-5 grid gap-3 text-sm text-white/75">
+      <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-copper">{title}</h2>
+      <div className="mt-5 grid gap-3 text-sm text-ink/70">
         {items.map((item) => (
-          <button key={item.label} className="text-left transition hover:text-white" onClick={item.onClick}>
+          <button key={item.label} className="text-left transition hover:text-copper" onClick={item.onClick}>
             {item.label}
           </button>
         ))}

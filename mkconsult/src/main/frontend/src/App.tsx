@@ -802,7 +802,7 @@ function ContactPage({ copy }: { copy: Copy }) {
         <div className="space-y-8">
           {[
             [MapPin, copy.contact.addressLabel, "Sofia, 1000"],
-            [Mail, copy.contact.emailLabel, "Finance@emkaconsult.bg"],
+            [Mail, copy.contact.emailLabel, "finance@emkaconsult.bg"],
           ].map(([Icon, title, text]) => {
             const ItemIcon = Icon as typeof MapPin;
             return (

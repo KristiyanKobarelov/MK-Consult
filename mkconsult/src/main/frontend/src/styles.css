@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #25221d;
+  background: #fcf8f2;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.shadow-wall {
+  background:
+    linear-gradient(128deg, transparent 0 37%, rgba(37, 34, 29, 0.16) 38%, rgba(37, 34, 29, 0.07) 49%, transparent 50%),
+    linear-gradient(104deg, transparent 0 61%, rgba(37, 34, 29, 0.13) 62%, rgba(37, 34, 29, 0.05) 76%, transparent 77%),
+    radial-gradient(circle at 24% 15%, rgba(255, 255, 255, 0.7), transparent 22%),
+    #efe7dc;
+}
+
+.leaf-shadow {
+  background:
+    linear-gradient(72deg, transparent 0 48%, rgba(37, 34, 29, 0.14) 49%, transparent 50%),
+    linear-gradient(78deg, transparent 0 55%, rgba(37, 34, 29, 0.12) 56%, transparent 57%),
+    linear-gradient(84deg, transparent 0 61%, rgba(37, 34, 29, 0.08) 62%, transparent 63%);
+  filter: blur(0.5px);
+}

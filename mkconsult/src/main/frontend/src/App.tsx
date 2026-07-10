@@ -16,7 +16,7 @@ import {
   Target,
   UserRound,
 } from "lucide-react";
-import type { ReactNode } from "react";
+import type { FormEvent, ReactNode } from "react";
 import { useState } from "react";
 import emkaLogo from "./assets/emka-logo-cropped.png";
 
@@ -94,6 +94,9 @@ type Copy = {
     phone: string;
     message: string;
     submit: string;
+    sending: string;
+    success: string;
+    error: string;
   };
 };
 
@@ -285,6 +288,9 @@ const translations: Record<Lang, Copy> = {
       phone: "Телефон",
       message: "Съобщение",
       submit: "Изпрати",
+      sending: "Изпращане...",
+      success: "Съобщението беше изпратено успешно.",
+      error: "Съобщението не можа да бъде изпратено. Моля, опитайте отново.",
     },
   },
   en: {
@@ -468,6 +474,9 @@ const translations: Record<Lang, Copy> = {
       phone: "Phone",
       message: "Message",
       submit: "Send",
+      sending: "Sending...",
+      success: "Your message was sent successfully.",
+      error: "Your message could not be sent. Please try again.",
     },
   },
 };
@@ -586,11 +595,13 @@ function LanguageToggle({ lang, onLanguageChange }: { lang: Lang; onLanguageChan
 
 function Button({
   children,
+  disabled = false,
   variant = "filled",
   onClick,
   type = "button",
 }: {
   children: string;
+  disabled?: boolean;
   variant?: "filled" | "outline";
   onClick?: () => void;
   type?: "button" | "submit";
@@ -603,7 +614,8 @@ function Button({
   return (
     <button
       type={type}
-      className={`inline-flex h-12 items-center gap-3 px-6 text-[0.74rem] font-bold uppercase tracking-[0.06em] transition ${classes}`}
+      className={`inline-flex h-12 items-center gap-3 px-6 text-[0.74rem] font-bold uppercase tracking-[0.06em] transition disabled:cursor-not-allowed disabled:opacity-60 ${classes}`}
+      disabled={disabled}
       onClick={onClick}
     >
       {children}
@@ -796,6 +808,43 @@ function TeamPage({ copy, onNavigate }: { copy: Copy; onNavigate: (page: Page) =
 }
 
 function ContactPage({ copy }: { copy: Copy }) {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState(copy.contact.error);
+
+  const updateField = (field: keyof typeof form, value: string) => {
+    setForm((current) => ({ ...current, [field]: value }));
+    if (status !== "idle") {
+      setStatus("idle");
+    }
+  };
+
+  const submitForm = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus("sending");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) {
+        const data = (await response.json().catch(() => null)) as { message?: string } | null;
+        throw new Error(data?.message || "Contact request failed");
+      }
+
+      setForm({ name: "", email: "", phone: "", message: "" });
+      setStatus("success");
+    } catch (error) {
+      setErrorMessage(getContactErrorMessage(error, copy));
+      setStatus("error");
+    }
+  };
+
   return (
     <PageShell copy={copy} page={copy.nav.contact} title={copy.contact.title} intro={copy.contact.intro}>
       <div className="grid gap-12 lg:grid-cols-[0.75fr_1fr]">
@@ -816,19 +865,71 @@ function ContactPage({ copy }: { copy: Copy }) {
             );
           })}
         </div>
-        <form className="grid gap-5" onSubmit={(event) => event.preventDefault()}>
+        <form className="grid gap-5" onSubmit={submitForm}>
           <h2 className="font-serif text-3xl font-semibold">{copy.contact.formTitle}</h2>
-          <input className="h-12 border border-line bg-transparent px-4 outline-none focus:border-copper" placeholder={copy.contact.name} />
-          <input className="h-12 border border-line bg-transparent px-4 outline-none focus:border-copper" placeholder={copy.contact.email} />
-          <input className="h-12 border border-line bg-transparent px-4 outline-none focus:border-copper" placeholder={copy.contact.phone} />
-          <textarea className="min-h-40 border border-line bg-transparent p-4 outline-none focus:border-copper" placeholder={copy.contact.message} />
+          <input
+            className="h-12 border border-line bg-transparent px-4 outline-none focus:border-copper"
+            placeholder={copy.contact.name}
+            required
+            value={form.name}
+            onChange={(event) => updateField("name", event.target.value)}
+          />
+          <input
+            className="h-12 border border-line bg-transparent px-4 outline-none focus:border-copper"
+            placeholder={copy.contact.email}
+            required
+            type="email"
+            value={form.email}
+            onChange={(event) => updateField("email", event.target.value)}
+          />
+          <input
+            className="h-12 border border-line bg-transparent px-4 outline-none focus:border-copper"
+            placeholder={copy.contact.phone}
+            value={form.phone}
+            onChange={(event) => updateField("phone", event.target.value)}
+          />
+          <textarea
+            className="min-h-40 border border-line bg-transparent p-4 outline-none focus:border-copper"
+            placeholder={copy.contact.message}
+            required
+            value={form.message}
+            onChange={(event) => updateField("message", event.target.value)}
+          />
+          {status === "success" && <p className="text-sm font-semibold text-copper">{copy.contact.success}</p>}
+          {status === "error" && <p className="text-sm font-semibold text-ink">{errorMessage}</p>}
           <div>
-            <Button type="submit">{copy.contact.submit}</Button>
+            <Button type="submit" disabled={status === "sending"}>
+              {status === "sending" ? copy.contact.sending : copy.contact.submit}
+            </Button>
           </div>
         </form>
       </div>
     </PageShell>
   );
+}
+
+function getContactErrorMessage(error: unknown, copy: Copy) {
+  const message = error instanceof Error ? error.message : "";
+
+  if (message === "Email delivery is not configured.") {
+    return copy.ui.language === "BG"
+      ? "Изпращането на имейли не е конфигурирано. Трябва да се зададат SMTP настройки."
+      : "Email delivery is not configured. SMTP settings need to be added.";
+  }
+
+  if (message === "Email could not be sent.") {
+    return copy.ui.language === "BG"
+      ? "Имейлът не можа да бъде изпратен от пощенския сървър. Проверете SMTP настройките."
+      : "The email server could not send the message. Check the SMTP settings.";
+  }
+
+  if (message === "Failed to fetch") {
+    return copy.ui.language === "BG"
+      ? "Сървърът не е достъпен. Уверете се, че Spring приложението работи."
+      : "The server is not reachable. Make sure the Spring app is running.";
+  }
+
+  return copy.contact.error;
 }
 
 function Footer({ copy, onNavigate }: { copy: Copy; onNavigate: (page: Page) => void }) {

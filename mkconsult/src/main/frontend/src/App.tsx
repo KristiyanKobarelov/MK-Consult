@@ -128,7 +128,7 @@ const translations: Record<Lang, Copy> = {
     home: {
       eyebrow: "",
       title: "Вашият Стратегически",
-      accent: "Финансов Партньор.",
+      accent: "Финансов Партньор",
       lead: "Ние предоставяме точни данни за контрол на разходите, управление на паричните потоци и устойчив растеж.",
       missionTitle: "Нашата цел",
       missionIntro: "Трансформация на финансовата функция чрез стратегическо бизнес партньорство, стойност и доверие.",
@@ -312,7 +312,7 @@ const translations: Record<Lang, Copy> = {
     home: {
       eyebrow: "",
       title: "Your Strategic",
-      accent: "Financial Partner.",
+      accent: "Financial Partner",
       lead: "We deliver reliable data for cost control, cash flow management and sustainable growth.",
       missionTitle: "Our Mission",
       missionIntro: "Transforming the finance function through strategic business partnership, value creation and trust.",

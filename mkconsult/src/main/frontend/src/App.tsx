@@ -128,8 +128,8 @@ const translations: Record<Lang, Copy> = {
     home: {
       eyebrow: "",
       title: "Вашият Стратегически",
-      accent: "Финансов Партньор.",
-      lead: "Ние предоставяме точни данни за контрол на разходите, управление на паричните потоци и устойчив растеж.",
+      accent: "Финансов Партньор",
+      lead: "Ние предоставяме точни данни за контрол на разходите, управление на паричните потоци и устойчив растеж",
       missionTitle: "Нашата цел",
       missionIntro: "Трансформация на финансовата функция чрез стратегическо бизнес партньорство, стойност и доверие.",
       mission: [
@@ -152,7 +152,7 @@ const translations: Record<Lang, Copy> = {
       groups: [
         {
           title: "Финансово планиране и анализи",
-          summary: "Отчети, KPI, бюджетиране и контролинг за по-добра видимост върху бизнеса.",
+          summary: "Отчети, KPI, бюджетиране и контролинг за по-добра видимост върху бизнеса",
           icon: serviceIcons[0],
           bullets: [
             "Разработване на отчети за анализ на рентабилността на ниво регион и/или продукт",
@@ -167,7 +167,7 @@ const translations: Record<Lang, Copy> = {
         },
         {
           title: "Счетоводно обслужване",
-          summary: "Пълно счетоводно обслужване, регулаторно съответствие и отчетност.",
+          summary: "Пълно счетоводно обслужване, регулаторно съответствие и отчетност",
           icon: serviceIcons[1],
           bullets: [
             "Пълно счетоводно обслужване",
@@ -182,7 +182,7 @@ const translations: Record<Lang, Copy> = {
         },
         {
           title: "Стратегическо партньорство",
-          summary: "Подкрепа при инвестиции, оценки, капиталово структуриране и сделки.",
+          summary: "Подкрепа при инвестиции, оценки, капиталово структуриране и сделки",
           icon: serviceIcons[2],
           bullets: [
             "Стратегическо планиране",
@@ -194,7 +194,7 @@ const translations: Record<Lang, Copy> = {
         },
         {
           title: "Обработка на възнагражденията и администриране на персонала",
-          summary: "Payroll, HR администрация, вътрешни правила, проверки и препоръки.",
+          summary: "Payroll, HR администрация, вътрешни правила, проверки и препоръки",
           icon: serviceIcons[3],
           bullets: [
             "Калкулиране на възнаграждения и изготвяне на ведомости, рекапитулации, фишове, декларации и платежни нареждания",
@@ -312,8 +312,8 @@ const translations: Record<Lang, Copy> = {
     home: {
       eyebrow: "",
       title: "Your Strategic",
-      accent: "Financial Partner.",
-      lead: "We deliver reliable data for cost control, cash flow management and sustainable growth.",
+      accent: "Financial Partner",
+      lead: "We deliver reliable data for cost control, cash flow management and sustainable growth",
       missionTitle: "Our Mission",
       missionIntro: "Transforming the finance function through strategic business partnership, value creation and trust.",
       mission: [
@@ -336,7 +336,7 @@ const translations: Record<Lang, Copy> = {
       groups: [
         {
           title: "Financial Planning and Reporting",
-          summary: "Reports, KPIs, budgets and controlling for clearer business visibility.",
+          summary: "Reports, KPIs, budgets and controlling for clearer business visibility",
           icon: serviceIcons[0],
           bullets: [
             "Develop reports for profitability analysis on regional, country and product levels",
@@ -351,7 +351,7 @@ const translations: Record<Lang, Copy> = {
         },
         {
           title: "Accounting",
-          summary: "Day-to-day accounting, regulatory compliance and financial reporting.",
+          summary: "Day-to-day accounting, regulatory compliance and financial reporting",
           icon: serviceIcons[1],
           bullets: [
             "Day-to-day accounting services",
@@ -366,7 +366,7 @@ const translations: Record<Lang, Copy> = {
         },
         {
           title: "Your Strategic Partner",
-          summary: "Support for investments, valuations, capital structuring and transactions.",
+          summary: "Support for investments, valuations, capital structuring and transactions",
           icon: serviceIcons[2],
           bullets: [
             "Strategic planning",
@@ -378,7 +378,7 @@ const translations: Record<Lang, Copy> = {
         },
         {
           title: "Payroll and personnel administration",
-          summary: "Payroll, HR administration, internal policies, inspections and recommendations.",
+          summary: "Payroll, HR administration, internal policies, inspections and recommendations",
           icon: serviceIcons[3],
           bullets: [
             "Salaries calculation and preparation of payrolls, recapitulations, pay slips, monthly declarations and payment orders",
@@ -650,9 +650,9 @@ function MissionBand({ copy }: { copy: Copy }) {
     <section className="border-y border-line bg-cream px-7 py-16 text-ink sm:px-12 lg:px-16">
       <div className="mx-auto grid max-w-5xl gap-8">
         {copy.home.mission.map((item) => (
-          <div key={item} className="flex items-start gap-6">
-            <CheckCircle2 className="mt-1 h-11 w-11 shrink-0 text-copper" strokeWidth={1.5} />
-            <p className="text-lg font-semibold leading-8 text-ink/82 sm:text-xl">{item}</p>
+          <div key={item} className="flex items-center gap-6">
+            <CheckCircle2 className="h-11 w-11 shrink-0 text-copper" strokeWidth={1.5} />
+            <p className="text-lg font-semibold leading-8 text-ink/60 sm:text-xl">{item}</p>
           </div>
         ))}
       </div>
@@ -729,7 +729,7 @@ function ServicesPage({ copy, onNavigate }: { copy: Copy; onNavigate: (page: Pag
                 <Icon className="h-11 w-11 shrink-0 text-copper" strokeWidth={1.2} />
                 <div>
                   <h2 className="font-serif text-3xl font-semibold">{service.title}</h2>
-                  <p className="mt-3 text-sm leading-6 text-ink/70">{service.summary}</p>
+                  <p className="mt-3 text-sm font-bold leading-6 text-ink/70">{service.summary}</p>
                 </div>
               </div>
               <ul className="mt-7 grid gap-3 text-sm leading-6 text-ink/75">

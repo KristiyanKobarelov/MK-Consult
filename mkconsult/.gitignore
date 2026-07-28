@@ -1,59 +1,28 @@
-# Spring / Maven
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-# Generated frontend assets served by Spring
-src/main/resources/static/
-
 # Frontend dependencies and build output
-src/main/frontend/node_modules/
-src/main/frontend/dist/
-src/main/frontend/.vite/
-src/main/frontend/.turbo/
-src/main/frontend/npm-debug.log*
-src/main/frontend/yarn-debug.log*
-src/main/frontend/yarn-error.log*
-src/main/frontend/pnpm-debug.log*
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.turbo/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
 
 # Local environment files
 .env
 .env.*
 !.env.example
-src/main/frontend/.env
-src/main/frontend/.env.*
-!src/main/frontend/.env.example
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
 
 # OS files
 .DS_Store
 Thumbs.db
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
+# Editors
+.idea/
+.vscode/
 *.iws
 *.iml
 *.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/

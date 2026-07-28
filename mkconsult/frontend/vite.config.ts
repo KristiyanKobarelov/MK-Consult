@@ -3,8 +3,4 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
-  build: {
-    emptyOutDir: true,
-    outDir: "../resources/static",
-  },
 });
